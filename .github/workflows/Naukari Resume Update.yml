@@ -21,3 +21,4 @@ jobs:
 
       - name: Build & Run
         run: mvn clean test
+        working-directory: MyResume_Naukari/Naukari
