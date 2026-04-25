@@ -43,8 +43,7 @@ public class Naukari2 {
 		
 		WebDriver driver = new ChromeDriver(options);
        
-		TakesScreenshot ts = (TakesScreenshot) driver;
-		File src = ts.getScreenshotAs(OutputType.FILE);
+	
 		try {
 			driver.manage().window().maximize();
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(35));
@@ -62,7 +61,6 @@ public class Naukari2 {
 
 			WebElement passwordField = driver.findElement(By.id("passwordField"));
 			passwordField.sendKeys("Searching@123LTM"); // 🔹 Replace with your password
-			FileUtils.copyFile(src, new File("D:\\Git\\Naukari Resume Upload\\Naukari\\screenshot\\Enter UserName and password.png"));
 			// Step 3: Click login
 			WebElement loginBtn = driver.findElement(By.xpath("//button[text()='Login']"));
 			loginBtn.click();
@@ -70,8 +68,6 @@ public class Naukari2 {
 			// Wait until profile/homepage loads
 			wait.until(ExpectedConditions.urlContains("naukri.com/mnjuser/homepage"));
 			System.out.println("✅ Logged in successfully!");
-			FileUtils.copyFile(src, new File("D:\\Git\\Naukari Resume Upload\\Naukari\\screenshot\\Login.png"));
-			
 			// Step 4: Go to profile page
 			driver.get("https://www.naukri.com/mnjuser/profile");
 
@@ -83,7 +79,6 @@ public class Naukari2 {
 			File resume = new File(path); // 🔹 Replace with your actual path
 			if (!resume.exists()) {
 				System.out.println("❌ Resume file not found: " + resume.getAbsolutePath());
-				FileUtils.copyFile(src, new File("D:\\Git\\Naukari Resume Upload\\Naukari\\screenshot\\Resume file not found.png"));
 				return;
 			}
 
@@ -96,13 +91,10 @@ public class Naukari2 {
 					"Resume has been successfully uploaded." + ""));
 
 			System.out.println("✅ Resume uploaded successfully!");
-			FileUtils.copyFile(src, new File("D:\\Git\\Naukari Resume Upload\\Naukari\\screenshot\\Resume uploaded successfully.png"));
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("❌ Something went wrong!");
-			
-			FileUtils.copyFile(src, new File("D:\\Git\\Naukari Resume Upload\\Naukari\\screenshot\\headless.png"));
 		} finally {
 			// Wait a few seconds to see the result
 			try {
