@@ -28,7 +28,10 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-
+    
+      - name: Run Headless Browser Test
+        run: mvn clean
+        
       - name: Build & Run
         run: mvn clean test
         working-directory: Naukari
