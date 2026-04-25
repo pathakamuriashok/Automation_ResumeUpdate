@@ -30,8 +30,6 @@ public class Naukari2 {
 	
 		ChromeOptions options = new ChromeOptions();
 		
-	//	options.addArguments("--incognito"); // to pen in incognito mode
-
 		options.addArguments("--headless=new");
 		options.addArguments("--no-sandbox");
 		options.addArguments("--disable-dev-shm-usage");
