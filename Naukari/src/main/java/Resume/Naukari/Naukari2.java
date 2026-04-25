@@ -27,10 +27,11 @@ public class Naukari2 {
 
 		String path = System.getProperty("user.dir")+"\\src\\main\\java\\Resume\\Naukari\\P ASHOK KUMAR_LTM.pdf";
 		System.out.println(path);
+		String screenshot = System.getProperty("user.dir")+"\\screenshot\\";
 	
 		ChromeOptions options = new ChromeOptions();
 		
-		options.addArguments("--headless=new");
+	//	options.addArguments("--headless=new");
 		options.addArguments("--no-sandbox");
 		options.addArguments("--disable-dev-shm-usage");
 		options.addArguments("--disable-blink-features=AutomationControlled");
@@ -41,17 +42,19 @@ public class Naukari2 {
 		
 		WebDriver driver = new ChromeDriver(options);
        
-	
+		File src = null ;  
 		try {
 			driver.manage().window().maximize();
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(35));
-
+			src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 			// Step 1: Go to Naukri login page
 			driver.get("https://www.naukri.com/nlogin/login");
 
+			
 			// Step 2: Enter credentials
 			
-
+			FileUtils.copyFile(src, new File(screenshot+"screen.png"));
+			
 			WebElement emailField=wait.until(ExpectedConditions.presenceOfElementLocated(By.id("usernameField")));
 			
 			//WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("usernameField")));
@@ -60,6 +63,7 @@ public class Naukari2 {
 			WebElement passwordField = driver.findElement(By.id("passwordField"));
 			passwordField.sendKeys("Searching@123LTM"); // 🔹 Replace with your password
 			// Step 3: Click login
+			FileUtils.copyFile(src, new File(screenshot+"Enter UserName and Password.png"));
 			WebElement loginBtn = driver.findElement(By.xpath("//button[text()='Login']"));
 			loginBtn.click();
 
@@ -77,6 +81,7 @@ public class Naukari2 {
 			File resume = new File(path); // 🔹 Replace with your actual path
 			if (!resume.exists()) {
 				System.out.println("❌ Resume file not found: " + resume.getAbsolutePath());
+				FileUtils.copyFile(src, new File(screenshot+"Resume is not found.png"));
 				return;
 			}
 
@@ -89,10 +94,12 @@ public class Naukari2 {
 					"Resume has been successfully uploaded." + ""));
 
 			System.out.println("✅ Resume uploaded successfully!");
+			FileUtils.copyFile(src, new File(screenshot+"Resume uploaded successfully.png"));
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("❌ Something went wrong!");
+			FileUtils.copyFile(src, new File(screenshot+"Something went wrong.png"));
 		} finally {
 			// Wait a few seconds to see the result
 			try {

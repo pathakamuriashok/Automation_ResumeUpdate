@@ -1,8 +1,5 @@
 name: Naukari Resume Update_QA
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-  
 on:
   workflow_dispatch:
 
@@ -20,7 +17,7 @@ jobs:
       - name: List files (root)
         run: dir
 
-      - name: List all folders recursively
+        - name: List all folders recursively
         run: cmd dir /s
 
       - name: Setup Java
@@ -31,3 +28,4 @@ jobs:
 
       - name: Build & Run
         run: mvn clean test
+        working-directory: Naukari
