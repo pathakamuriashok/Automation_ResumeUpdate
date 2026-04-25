@@ -17,8 +17,8 @@ jobs:
       - name: List files (root)
         run: dir
 
-       - name: List all folders recursively
-        run: cmd dir /s
+      - name: List all folders recursively
+        run: dir /s
 
       - name: Setup Java
         uses: actions/setup-java@v4
