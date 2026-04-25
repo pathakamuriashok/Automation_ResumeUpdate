@@ -1,8 +1,7 @@
 name: Naukari Resume Update_QA
 
 on:
-  push:
-    branches: [ "master" ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -12,8 +11,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: List files
+      - name: Show current directory
+        run: pwd
+
+      - name: List files (root)
         run: dir
+
+      - name: List all folders recursively
+        run: dir /s
 
       - name: Setup Java
         uses: actions/setup-java@v4
